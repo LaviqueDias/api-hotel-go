@@ -24,3 +24,7 @@ func FromHotelDTO(hotelDTO HotelDTO) *Hotel {
 		Name: hotelDTO.Name,
 	}
 }
+
+func ToHotelResponse(hotelDTO HotelDTO) HotelResponse {
+	return HotelResponse(hotelDTO)
+}
