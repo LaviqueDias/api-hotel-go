@@ -1,6 +1,9 @@
 package controller
 
-import "github.com/LaviqueDias/api-hotel-go/internal/hotel/service"
+import (
+	"github.com/LaviqueDias/api-hotel-go/internal/hotel/service"
+	"github.com/gin-gonic/gin"
+)
 
 func NewHoteControllerInterface(service service.HotelServiceInterface) HotelControllerInterface {
 	return &hotelControllerInterface{
@@ -13,4 +16,5 @@ type hotelControllerInterface struct {
 }
 
 type HotelControllerInterface interface {
+	CreateHotel(c *gin.Context)
 }

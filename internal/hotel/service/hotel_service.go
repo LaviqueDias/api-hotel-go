@@ -1,6 +1,10 @@
 package service
 
-import "github.com/LaviqueDias/api-hotel-go/internal/hotel/repository"
+import (
+	"github.com/LaviqueDias/api-hotel-go/internal/configuration/rest_err"
+	"github.com/LaviqueDias/api-hotel-go/internal/hotel/model"
+	"github.com/LaviqueDias/api-hotel-go/internal/hotel/repository"
+)
 
 func NewHotelServiceInterface(repository repository.HotelRepositoryInterface) HotelServiceInterface {
 	return &hotelServiceInterface{
@@ -13,5 +17,5 @@ type hotelServiceInterface struct {
 }
 
 type HotelServiceInterface interface {
-
+	CreateHotel(hotelDTO *model.HotelDTO) (*model.HotelDTO, *rest_err.RestErr)
 }
