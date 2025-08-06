@@ -5,27 +5,27 @@ type HotelDTO struct {
 	Name string
 }
 
-func FromHotelRequest(hotelRequest HotelRequest) *HotelDTO {
+func HotelRequestToHotelDTO(hotelRequest HotelRequest) *HotelDTO {
 	return &HotelDTO{
 		Name: hotelRequest.Name,
 	}
 }
 
-func ToHotelDTO(hotel Hotel) *HotelDTO {
+func HotelToHotelDTO(hotel *Hotel) *HotelDTO {
 	return &HotelDTO{
 		ID: hotel.ID,
 		Name: hotel.Name,
 	}
 }
 
-func FromHotelDTO(hotelDTO HotelDTO) *Hotel {
+func HotelDTOToHotel(hotelDTO *HotelDTO) *Hotel {
 	return &Hotel{
 		ID:   hotelDTO.ID,
 		Name: hotelDTO.Name,
 	}
 }
 
-func ToHotelResponse(hotelDTO *HotelDTO) HotelResponse {
+func HotelDTOToHotelResponse(hotelDTO *HotelDTO) HotelResponse {
 	return HotelResponse{
 		ID: hotelDTO.ID,
 		Name: hotelDTO.Name,
