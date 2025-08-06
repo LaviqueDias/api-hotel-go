@@ -4,9 +4,12 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/joho/godotenv"
+	"github.com/LaviqueDias/api-hotel-go/cmd/api/dependecies"
 	"github.com/LaviqueDias/api-hotel-go/internal/configuration/logger"
 	"github.com/LaviqueDias/api-hotel-go/internal/database/postgresql"
+	"github.com/LaviqueDias/api-hotel-go/internal/routes"
+	"github.com/gin-gonic/gin"
+	"github.com/joho/godotenv"
 )
 
 func main() {
@@ -25,4 +28,17 @@ func main() {
 
 	p := db.Ping()
 	fmt.Println(p)
+
+	hotelController := dependecies.InitHotelDependencies(db)
+
+	router := gin.Default()
+	routerApi := router.Group("/api")
+
+	hotelGroup := routerApi.Group("/hotel")
+	routes.InitHotelRoutes(hotelGroup, hotelController)
+
+
+	if err := router.Run(":8080"); err != nil {
+		log.Fatal()
+	}
 }
