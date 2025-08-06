@@ -3,6 +3,8 @@ package repository
 import (
 	"database/sql"
 
+	"github.com/LaviqueDias/api-hotel-go/internal/configuration/rest_err"
+	"github.com/LaviqueDias/api-hotel-go/internal/hotel/model"
 )
 
 func NewHotelReposirotyInterface(databaseConnection *sql.DB) HotelRepositoryInterface {
@@ -16,5 +18,5 @@ type hotelRepositoryInterface struct {
 }
 
 type HotelRepositoryInterface interface {
-
+	CreateHotel(hotelDTO *model.HotelDTO) (*model.HotelDTO, *rest_err.RestErr)
 }
