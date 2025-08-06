@@ -26,7 +26,7 @@ func (hc *hotelControllerInterface) CreateHotel(c *gin.Context) {
 		return
 	}
 
-	hotelDTO := model.FromHotelRequest(hotelRequest)
+	hotelDTO := model.HotelRequestToHotelDTO(hotelRequest)
 
 	hotelCreatedDTO, err := hc.service.CreateHotel(hotelDTO)
 	if err != nil{
@@ -36,7 +36,7 @@ func (hc *hotelControllerInterface) CreateHotel(c *gin.Context) {
 		c.JSON(err.Code, err)
 	}
 
-	hotelResponse := model.ToHotelResponse(hotelCreatedDTO)
+	hotelResponse := model.HotelDTOToHotelResponse(hotelCreatedDTO)
 
 	logger.Info("CreateHotel controller executed succesfully", 
 		zap.String("journey", "CreateHotel"),
