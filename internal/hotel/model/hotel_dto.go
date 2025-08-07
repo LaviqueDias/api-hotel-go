@@ -1,8 +1,11 @@
 package model
 
+import "github.com/LaviqueDias/api-hotel-go/internal/room/model"
+
 type HotelDTO struct {
-	ID   int
-	Name string
+	ID    int
+	Name  string
+	Rooms []model.Room
 }
 
 func HotelRequestToHotelDTO(hotelRequest HotelRequest) *HotelDTO {
@@ -13,8 +16,9 @@ func HotelRequestToHotelDTO(hotelRequest HotelRequest) *HotelDTO {
 
 func HotelToHotelDTO(hotel *Hotel) *HotelDTO {
 	return &HotelDTO{
-		ID: hotel.ID,
-		Name: hotel.Name,
+		ID:    hotel.ID,
+		Name:  hotel.Name,
+		Rooms: hotel.Rooms,
 	}
 }
 
@@ -22,12 +26,14 @@ func HotelDTOToHotel(hotelDTO *HotelDTO) *Hotel {
 	return &Hotel{
 		ID:   hotelDTO.ID,
 		Name: hotelDTO.Name,
+		Rooms: hotelDTO.Rooms,
 	}
 }
 
 func HotelDTOToHotelResponse(hotelDTO *HotelDTO) HotelResponse {
 	return HotelResponse{
-		ID: hotelDTO.ID,
+		ID:   hotelDTO.ID,
 		Name: hotelDTO.Name,
+		Rooms: hotelDTO.Rooms,
 	}
 }
