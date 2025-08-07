@@ -11,7 +11,7 @@ func (rs *roomServiceInterface) CreateRoom(roomDTO *model.RoomDTO) (*model.RoomD
 	logger.Info("Init Createroom service",
 		zap.String("journey", "Createroom"),
 	)
-
+	
 	roomDTO, err := rs.repository.CreateRoom(roomDTO)
 	if err != nil {
 		logger.Error("Error trying to call repository",
