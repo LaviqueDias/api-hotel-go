@@ -12,18 +12,21 @@ func (rr *roomRepositoryInterface) CreateRoom(roomDTO *model.RoomDTO) (*model.Ro
 		zap.String("journey", "CreateRoom"),
 	)
 
+	room := model.RoomDTOToRoom(roomDTO)
+
 	query := `
-		INSERT INTO rooms (room_number, status, hotel_id) 
-		VALUES ($1, $2, $3)
+		INSERT INTO rooms (number, status, daily_price, hotel_id) 
+		VALUES ($1, $2, $3, $4)
 		RETURNING id
 	`
 
 	var lastInsertID int
 	err := rr.databaseConnection.QueryRow(
 		query,
-		roomDTO.RoomNumber,
-		roomDTO.Status,
-		roomDTO.HotelID,
+		room.RoomNumber,
+		room.Status,
+		room.DailyPrice,
+		room.HotelID,
 	).Scan(&lastInsertID)
 
 	if err != nil {
@@ -34,7 +37,9 @@ func (rr *roomRepositoryInterface) CreateRoom(roomDTO *model.RoomDTO) (*model.Ro
 		return nil, rest_err.NewInternalServerError(err.Error())
 	}
 
-	roomDTO.ID = lastInsertID
+	room.ID = lastInsertID
+
+	roomDTO = model.RoomToRoomDTO(room)
 
 	logger.Info("Room inserted successfully",
 		zap.Int("roomId", lastInsertID),
