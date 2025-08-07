@@ -10,7 +10,7 @@ func InitHotelRoutes(r *gin.RouterGroup, hotelController controller.HotelControl
 
 	r.POST("/", hotelController.CreateHotel)
 	// r.GET("/list", hotelController.ListHotels)
-	// r.GET("/:id", hotelController.GetHotelByID)
+	r.GET("/id/:id", hotelController.GetHotelByID)
 	// r.PUT("/:id", hotelController.UpdateHotel)
 	// r.DELETE("/:id", hotelController.DeleteHotel)
 
