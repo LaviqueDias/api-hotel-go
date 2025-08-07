@@ -18,4 +18,5 @@ type hotelServiceInterface struct {
 
 type HotelServiceInterface interface {
 	CreateHotel(hotelDTO *model.HotelDTO) (*model.HotelDTO, *rest_err.RestErr)
+	GetHotelByID(id int) (*model.HotelDTO, *rest_err.RestErr)
 }

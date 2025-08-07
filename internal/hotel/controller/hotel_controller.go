@@ -17,4 +17,5 @@ type hotelControllerInterface struct {
 
 type HotelControllerInterface interface {
 	CreateHotel(c *gin.Context)
+	GetHotelByID(c *gin.Context)
 }

@@ -19,4 +19,5 @@ type hotelRepositoryInterface struct {
 
 type HotelRepositoryInterface interface {
 	CreateHotel(hotelDTO *model.HotelDTO) (*model.HotelDTO, *rest_err.RestErr)
+	GetHotelByID(id int) (*model.HotelDTO, *rest_err.RestErr)
 }
