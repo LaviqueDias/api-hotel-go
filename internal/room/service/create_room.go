@@ -8,27 +8,28 @@ import (
 )
 
 func (rs *roomServiceInterface) CreateRoom(roomDTO *model.RoomDTO) (*model.RoomDTO, *rest_err.RestErr) {
-	logger.Info("Init Createroom service",
-		zap.String("journey", "Createroom"),
+	logger.Info("Init CreateRoom service",
+		zap.String("journey", "CreateRoom"),
 	)
 
-	// pegar o hotel pelo ID - tenho que acessar o repository de ontem pra usar a f unção GetHotelByID, mas não consigo pq é uma interface
-	// depois, verificar se hotel existe
-	// depois, fazer hotel.AddRoom(room) - tenho que acessar o model de hotel pra usar a função AddRoom
-	// depois dou continuidade ao codigo que já está pronto
+	// valida hotel existente antes de inserir
+	if _, err := rs.hotelRepository.GetHotelByID(roomDTO.HotelID); err != nil {
+		logger.Error("Hotel not found when creating room", err,
+			zap.Int("hotelId", roomDTO.HotelID), zap.String("journey", "CreateRoom"))
+		return nil, rest_err.NewNotFoundError("hotel not found")
+	}
 
-	roomDTO, err := rs.repository.CreateRoom(roomDTO)
+	createdRoomDTO, err := rs.repository.CreateRoom(roomDTO)
 	if err != nil {
-		logger.Error("Error trying to call repository",
-			err,
+		logger.Error("Error trying to create room", err,
 			zap.String("journey", "CreateRoom"))
 		return nil, err
 	}
 
-	logger.Info("CreateRoom service executed succesfully",
+	logger.Info("CreateRoom service executed successfully",
+		zap.Int("roomId", createdRoomDTO.ID),
 		zap.String("journey", "CreateRoom"),
 	)
 
-	return roomDTO, err
-
+	return createdRoomDTO, nil
 }
