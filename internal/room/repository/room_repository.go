@@ -19,4 +19,5 @@ type roomRepositoryInterface struct {
 
 type RoomRepositoryInterface interface {
 	CreateRoom(roomDTO *model.RoomDTO) (*model.RoomDTO, *rest_err.RestErr)
+	GetRoomsByHotelID(hotelID int) ([]model.Room, *rest_err.RestErr)
 }
