@@ -8,6 +8,3 @@ type Hotel struct {
 	Rooms []model.Room
 }
 
-func (h *Hotel) AddRoom(room model.Room) {
-	h.Rooms = append(h.Rooms, room)
-}
