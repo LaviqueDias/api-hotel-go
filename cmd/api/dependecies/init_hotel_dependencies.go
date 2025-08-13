@@ -13,6 +13,6 @@ func InitHotelDependencies(database *sql.DB) controller.HotelControllerInterface
 	repository := repository.NewHotelReposirotyInterface(database)
 	roomRepository := roomRepository.NewRoomRepositoryInterface(database)
 	service := service.NewHotelServiceInterface(repository, roomRepository)
-	return controller.NewHoteControllerInterface(service)
+	return controller.NewHotelControllerInterface(service)
 
 }

@@ -5,7 +5,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func NewHoteControllerInterface(service service.HotelServiceInterface) HotelControllerInterface {
+func NewHotelControllerInterface(service service.HotelServiceInterface) HotelControllerInterface {
 	return &hotelControllerInterface{
 		service: service,
 	}
