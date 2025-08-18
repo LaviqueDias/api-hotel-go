@@ -9,5 +9,4 @@ type BookingResponse struct {
 	Status       string    `json:"status"`       
 	TotalPrice   float64   `json:"total_price"`  
 	GuestID      int       `json:"guest_id"`
-	RoomIDs      []int     `json:"room_ids"`
 }

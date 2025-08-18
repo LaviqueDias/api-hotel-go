@@ -9,5 +9,4 @@ type Booking struct {
 	Status       string
 	TotalPrice   float64
 	GuestID      int
-	RoomIDs      []int
 }
