@@ -9,7 +9,7 @@ func InitGuestRoutes(r *gin.RouterGroup, guestController controller.GuestControl
 
 	r.POST("/", guestController.CreateGuest)
 	// r.GET("/list", guestController.Listguests)
-	// r.GET("/id/:id", guestController.GetguestByID)
+	r.GET("/id/:id", guestController.GetGuestByID)
 	// r.PUT("/:id", guestController.Updateguest)
 	// r.DELETE("/:id", guestController.Deleteguest)
 
