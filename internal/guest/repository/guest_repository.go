@@ -19,4 +19,5 @@ type guestRepositoryInterface struct {
 
 type GuestRepositoryInterface interface {
 	CreateGuest(guestDTO *model.GuestDTO) (*model.GuestDTO, *rest_err.RestErr)
+	GetGuestByID(idGuest int) (*model.GuestDTO, *rest_err.RestErr)
 }
