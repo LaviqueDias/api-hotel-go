@@ -17,4 +17,5 @@ type guestControllerInterface struct {
 
 type GuestControllerInterface interface {
 	CreateGuest(c *gin.Context)
+	GetGuestByID(c *gin.Context)
 }
