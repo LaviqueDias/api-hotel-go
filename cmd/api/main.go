@@ -32,6 +32,7 @@ func main() {
 	hotelController := dependecies.InitHotelDependencies(db)
 	roomController := dependecies.InitRoomDependencies(db)
 	guestController := dependecies.InitGuestDependencies(db)
+	bookingController := dependecies.InitBookingDependencies(db)
 
 	router := gin.Default()
 	routerApi := router.Group("/api")
@@ -44,6 +45,9 @@ func main() {
 
 	guestGroup := routerApi.Group("/guest")
 	routes.InitGuestRoutes(guestGroup, guestController)
+
+	bookingGroup := routerApi.Group("/booking")
+	routes.InitBookingRoutes(bookingGroup, bookingController)
 
 
 	if err := router.Run(":8080"); err != nil {
