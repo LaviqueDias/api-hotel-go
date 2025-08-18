@@ -18,4 +18,5 @@ type guestServiceInterface struct {
 
 type GuestServiceInterface interface {
 	CreateGuest(GuestDTO *model.GuestDTO) (*model.GuestDTO, *rest_err.RestErr)
+	GetGuestByID(idGuest int) (*model.GuestDTO, *rest_err.RestErr)
 } 
